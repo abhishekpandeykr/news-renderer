@@ -1,6 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
-import * as Request from "request";
+// import * as Request from "request";
+import request from 'request';
 
 type Data = {
   name: string
@@ -12,7 +13,7 @@ export default function handler(
 ) {
   if(req.method === "POST") {
     const body = JSON.parse(req.body)
-    Request(body.url, function (error:any, response:any, body:any) {
+    request(body.url, function (error:any, response:any, body:any) {
       res.status(response.statusCode).send(body)
     });
   }
